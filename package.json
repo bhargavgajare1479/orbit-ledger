@@ -1,0 +1,57 @@
+{
+  "name": "orbit-ledger",
+  "version": "1.0.0",
+  "description": "Immutable shared ledger and conjunction screening system for space debris tracking",
+  "main": "server/api.js",
+  "engines": {
+    "node": ">=20.0.0 <21.0.0"
+  },
+  "scripts": {
+    "preflight": "node scripts/preflight.js",
+    "seed": "node scripts/seed_data_processor.js",
+    "compile": "hardhat compile",
+    "test:chain": "node --test test/chain/*.test.js",
+    "test:contracts": "hardhat test",
+    "test": "npm run test:chain && npm run test:contracts",
+    "deploy:local": "hardhat run scripts/deploy.js --network ganache",
+    "deploy:sepolia": "hardhat run scripts/deploy.js --network sepolia",
+    "ganache": "ganache --server.port 8545 --wallet.totalAccounts 10 --miner.blockTime 0 --chain.networkId 1337 --wallet.mnemonic \"submit lake embrace famous lazy drum proud poverty casino rare unhappy dawn\"",
+    "server": "node server/api.js",
+    "frontend:install": "cd frontend && npm install",
+    "frontend:dev": "cd frontend && npm run dev",
+    "frontend:build": "cd frontend && npm run build",
+    "demo": "node scripts/launch_demo.js",
+    "test:e2e": "node scripts/demo_e2e.js",
+    "reset:chain": "node scripts/reset_chain.js"
+  },
+  "keywords": [
+    "blockchain",
+    "space-debris",
+    "ethereum",
+    "ganache",
+    "solidity",
+    "pbft",
+    "sgp4",
+    "merkle-tree"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@openzeppelin/contracts": "5.0.2",
+    "cors": "^2.8.5",
+    "csv-parse": "^5.5.6",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.2",
+    "express": "^4.21.0",
+    "ganache": "^7.9.2",
+    "satellite.js": "^5.0.0"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^2.0.8",
+    "@nomicfoundation/hardhat-ethers": "^3.0.8",
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.12",
+    "@nomicfoundation/hardhat-verify": "^2.0.11",
+    "chai": "^4.3.7",
+    "hardhat": "^2.22.10"
+  }
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orbit Ledger | LEO Debris Tracking Ground Station</title>
+  <meta name="description" content="Immutable shared ledger and conjunction screening console for space situational awareness and orbital debris tracking.">
+</head>
+<body class="bg-canvas-bg text-ink-primary font-sans antialiased min-h-screen flex flex-col selection:bg-accent-primary selection:text-white">
+
+  <!-- Top Global Status Bar -->
+  <header id="status-bar" class="h-8 bg-canvas-sunken border-b border-rule-hairline px-4 flex items-center justify-between text-xs font-mono text-ink-muted select-none">
+    <div class="flex items-center space-x-4">
+      <span class="flex items-center">
+        <span class="inline-block w-2 h-2 rounded-none bg-status-pass mr-1.5"></span>
+        <span id="stat-network" class="text-ink-primary font-medium">GANACHE: 127.0.0.1:8545 (1337)</span>
+      </span>
+      <span class="text-rule-strong">|</span>
+      <span>HEIGHT: <strong id="stat-height" class="text-ink-primary font-medium">25 BLOCKS</strong></span>
+      <span class="text-rule-strong">|</span>
+      <span>ANCHORED: <strong id="stat-anchored" class="text-ink-primary font-medium">25 / 25</strong></span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <span id="stat-utxo-count">UTXO POOL: <strong>4 UNSPENT</strong></span>
+      <span class="text-rule-strong">|</span>
+      <span id="stat-active-operator" class="text-accent-primary font-medium">OPERATOR: Node 1 Alpha</span>
+    </div>
+  </header>
+
+  <!-- App Body Layout -->
+  <div class="flex-1 flex overflow-hidden">
+    
+    <!-- Left Navigation Rail -->
+    <aside class="w-56 bg-canvas-card border-r border-rule-hairline flex flex-col justify-between flex-shrink-0">
+      <div>
+        <!-- Station Header -->
+        <div class="p-4 border-b border-rule-hairline">
+          <h1 class="text-sm font-semibold tracking-wider uppercase text-ink-primary">ORBIT LEDGER</h1>
+          <p class="text-xs text-ink-muted mt-0.5 font-mono">GROUND STATION v1.0</p>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav class="py-2" id="nav-menu">
+          <a href="#overview" data-route="overview" class="nav-item flex items-center px-4 py-2 text-xs font-medium text-ink-muted hover:text-ink-primary hover:bg-canvas-sunken border-l-2 border-transparent">
+            Overview
+          </a>
+          <a href="#records" data-route="records" class="nav-item flex items-center px-4 py-2 text-xs font-medium text-ink-muted hover:text-ink-primary hover:bg-canvas-sunken border-l-2 border-transparent">
+            Orbital Records
+          </a>
+          <a href="#explorer" data-route="explorer" class="nav-item flex items-center px-4 py-2 text-xs font-medium text-ink-muted hover:text-ink-primary hover:bg-canvas-sunken border-l-2 border-transparent">
+            Chain Explorer
+          </a>
+          <a href="#consensus" data-route="consensus" class="nav-item flex items-center px-4 py-2 text-xs font-medium text-ink-muted hover:text-ink-primary hover:bg-canvas-sunken border-l-2 border-transparent">
+            Consensus Lab
+          </a>
+          <a href="#consortium" data-route="consortium" class="nav-item flex items-center px-4 py-2 text-xs font-medium text-ink-muted hover:text-ink-primary hover:bg-canvas-sunken border-l-2 border-transparent">
+            Consortium PBFT
+          </a>
+          <a href="#ethereum" data-route="ethereum" class="nav-item flex items-center px-4 py-2 text-xs font-medium text-ink-muted hover:text-ink-primary hover:bg-canvas-sunken border-l-2 border-transparent">
+            Ethereum Bridge
+          </a>
+          <a href="#conjunctions" data-route="conjunctions" class="nav-item flex items-center px-4 py-2 text-xs font-medium text-ink-muted hover:text-ink-primary hover:bg-canvas-sunken border-l-2 border-transparent">
+            Conjunction Screening
+          </a>
+          <a href="#concepts" data-route="concepts" class="nav-item flex items-center px-4 py-2 text-xs font-medium text-ink-muted hover:text-ink-primary hover:bg-canvas-sunken border-l-2 border-transparent">
+            Concepts Hub
+          </a>
+        </nav>
+      </div>
+
+      <!-- Operator Switcher Footer -->
+      <div class="p-3 border-t border-rule-hairline bg-canvas-sunken">
+        <label for="operator-select" class="block text-[10px] uppercase tracking-wider text-ink-muted font-semibold mb-1">
+          Active Operator Context
+        </label>
+        <select id="operator-select" class="w-full bg-canvas-card border border-rule-strong text-ink-primary text-xs py-1 px-1.5 rounded-none font-mono focus:outline-none focus:border-accent-primary">
+          <option value="0">Node 1 (Alpha - Iridium)</option>
+          <option value="1">Node 2 (Beta - Cosmos)</option>
+          <option value="2">Node 3 (Gamma - Observer)</option>
+          <option value="3">Node 4 (Delta - Auxiliary)</option>
+          <option value="examiner">Academic Examiner</option>
+        </select>
+      </div>
+    </aside>
+
+    <!-- Main Content Stage -->
+    <main id="app-stage" class="flex-1 overflow-y-auto p-6">
+      <div id="page-content" class="max-w-[1400px] mx-auto">
+        <!-- Dynamic Route Content Loaded Here -->
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Modal Container -->
+  <div id="modal-root" class="hidden fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4"></div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+@import "@fontsource/ibm-plex-sans/400.css";
+@import "@fontsource/ibm-plex-sans/500.css";
+@import "@fontsource/ibm-plex-sans/600.css";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --canvas-bg: #F4F1EA;
+  --canvas-card: #FAF8F5;
+  --canvas-sunken: #ECE7DE;
+  --ink-primary: #1A1A18;
+  --ink-muted: #6B675E;
+  --ink-subtle: #969186;
+  --rule-hairline: #D8D3C8;
+  --rule-strong: #B8B2A4;
+  --accent-primary: #C2410C;
+  --accent-hover: #9A3412;
+  --status-pass: #2F6B4F;
+  --status-pass-bg: #E7F0EB;
+  --status-fail: #991B1B;
+  --status-fail-bg: #FBEAEA;
+}
+
+/* Base resets */
+body {
+  background-color: var(--canvas-bg);
+  color: var(--ink-primary);
+  font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Custom Scrollbar for dense engineering console */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--canvas-sunken);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--rule-strong);
+  border-radius: 0px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-muted);
+}
+
+/* Dense table typography and borders */
+.table-dense {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+.table-dense th {
+  background-color: var(--canvas-sunken);
+  color: var(--ink-muted);
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--rule-strong);
+  text-align: left;
+}
+.table-dense td {
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--rule-hairline);
+  color: var(--ink-primary);
+}
+.table-dense tr:nth-child(even) {
+  background-color: var(--canvas-card);
+}
+.table-dense tr:hover {
+  background-color: #EBE6DC;
+}
+
+/* Common Card style */
+.card-box {
+  background-color: var(--canvas-card);
+  border: 1px solid var(--rule-hairline);
+  padding: 16px;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--accent-primary);
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+}
+
+.btn-secondary {
+  background-color: var(--canvas-card);
+  color: var(--ink-primary);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border: 1px solid var(--rule-strong);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+.btn-secondary:hover {
+  background-color: var(--canvas-sunken);
+}
+
+.btn-danger {
+  background-color: var(--status-fail);
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.btn-danger:hover {
+  background-color: #7F1D1D;
+}
+
+/* Active navigation state */
+.nav-item.active {
+  border-left-color: var(--accent-primary);
+  background-color: var(--canvas-sunken);
+  color: var(--ink-primary);
+  font-weight: 600;
+}

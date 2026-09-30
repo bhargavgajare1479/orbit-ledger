@@ -1,0 +1,16 @@
+{
+  "network": "ganache",
+  "chainId": 1337,
+  "deployedAt": "2026-09-30T18:23:35.684Z",
+  "deployer": "0x0a70f9F1f5fDDc0c34b8Bb44463bd0204b8af922",
+  "contracts": {
+    "DataCredit": "0x70be140c173D14505f104B041b8895aA9f36cc3C",
+    "AlertCertificate": "0x6C01880CfEb73d84636CaB7882a35ab666C9016E",
+    "DebrisLedger": "0x3Fe90355aC5Eea0d38CFE1d8020343488B46237C",
+    "ConjunctionMonitor": "0x6c77610A8DBc643d012D666B3f25903d3c5bd44d"
+  },
+  "parameters": {
+    "accessFeeODC": "100",
+    "initialThresholdMetres": 50000
+  }
+}

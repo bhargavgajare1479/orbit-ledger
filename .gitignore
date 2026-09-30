@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+
+# Environment and secrets
+.env
+.env.local
+
+# Build artifacts and caches
+artifacts/
+cache/
+dist/
+frontend/dist/
+.system_generated/
+scratch/
+
+# Large raw Space-Track CSVs (reproducible via seed scripts)
+iridium_33_july2026.csv
+cosmos_2251_july2026.csv
+
+# System and editor files
+.DS_Store
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
