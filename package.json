@@ -15,6 +15,8 @@
     "test": "npm run test:chain && npm run test:contracts",
     "deploy:local": "hardhat run scripts/deploy.js --network ganache",
     "deploy:sepolia": "hardhat run scripts/deploy.js --network sepolia",
+    "anchor:all": "node scripts/anchor_all.js ganache",
+    "anchor:sepolia": "node scripts/anchor_all.js sepolia",
     "ganache": "ganache --server.port 8545 --wallet.totalAccounts 10 --miner.blockTime 0 --chain.networkId 1337 --wallet.mnemonic \"submit lake embrace famous lazy drum proud poverty casino rare unhappy dawn\"",
     "server": "node server/api.js",
     "frontend:install": "cd frontend && npm install",
