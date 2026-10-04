@@ -21,6 +21,15 @@ async function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+async function waitForPort(port, timeoutMs = 15000) {
+  const start = Date.now();
+  while (Date.now() - start < timeoutMs) {
+    if (await isPortOpen(port)) return true;
+    await sleep(300);
+  }
+  return false;
+}
+
 async function launchDemo() {
   console.log(`\n======================================================`);
   console.log(` Orbit Ledger: Ground Station Demo Launcher`);
@@ -49,7 +58,7 @@ async function launchDemo() {
   }
 
   // 2. Start Ganache local chain
-  const isGanacheUp = await isPortOpen(8545);
+  let isGanacheUp = await isPortOpen(8545);
   if (!isGanacheUp) {
     console.log(`[2/5] Starting local Ganache RPC on port 8545...`);
     const ganacheProc = spawn('npx', [
@@ -61,13 +70,19 @@ async function launchDemo() {
       '--wallet.mnemonic', 'submit lake embrace famous lazy drum proud poverty casino rare unhappy dawn'
     ], { stdio: 'ignore' });
     processes.push(ganacheProc);
-    await sleep(2500);
+    isGanacheUp = await waitForPort(8545, 15000);
+    if (!isGanacheUp) {
+      throw new Error('Ganache RPC failed to start on port 8545.');
+    }
   }
   console.log(`[2/5] ✓ Ganache RPC active on http://127.0.0.1:8545`);
 
   // 3. Deploy contracts & anchor roots
   console.log(`[3/5] Deploying smart contracts and anchoring 25 block roots...`);
-  execSync('npx hardhat run scripts/deploy.js --network ganache', { stdio: 'inherit' });
+  execSync('npx hardhat run scripts/deploy.js --network ganache', {
+    stdio: 'inherit',
+    env: { ...process.env, HARDHAT_DISABLE_TELEMETRY_PROMPT: 'true' }
+  });
   execSync('node scripts/anchor_all.js ganache', { stdio: 'inherit' });
   console.log(`[3/5] ✓ Smart contracts deployed and anchored.`);
 
@@ -75,7 +90,10 @@ async function launchDemo() {
   console.log(`[4/5] Launching REST API server on port 3000...`);
   const apiProc = spawn('node', ['server/api.js'], { stdio: 'inherit' });
   processes.push(apiProc);
-  await sleep(1500);
+  const isApiUp = await waitForPort(3000, 10000);
+  if (!isApiUp) {
+    throw new Error('REST API server failed to start on port 3000.');
+  }
   console.log(`[4/5] ✓ REST API server online.`);
 
   // 5. Start Vite Front-End

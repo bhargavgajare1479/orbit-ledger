@@ -1,7 +1,7 @@
 {
   "network": "ganache",
   "chainId": 1337,
-  "deployedAt": "2026-09-30T18:23:35.684Z",
+  "deployedAt": "2026-10-04T07:33:00.081Z",
   "deployer": "0x0a70f9F1f5fDDc0c34b8Bb44463bd0204b8af922",
   "contracts": {
     "DataCredit": "0x70be140c173D14505f104B041b8895aA9f36cc3C",
